@@ -21,6 +21,10 @@ class RawPacket implements IPacket {
 	public function setRawPacket($data) {
 		$this->_buffer->addString($data);
 	}
+	
+	public function dumpPacket() {
+		$this->_buffer->dumpMemory();
+	}
 }
 
 ?>
