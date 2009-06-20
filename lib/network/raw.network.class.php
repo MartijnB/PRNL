@@ -43,6 +43,12 @@ class RawNetwork {
 		}
 	}
 	
+	public function sendPacket(IPacket $packet) {
+		if (!socket_send($this->_socket, $packet->getRawPacket(), $packet->getLength(), 0)) {
+			throw new Exception(socket_strerror(socket_last_error()));
+		}
+	}
+	
 	public function closeSocket() {
 		if (is_resource($this->_socket)) {
 			socket_close($this->_socket);
