@@ -13,7 +13,7 @@ class RawNetwork {
 	private $_ipProtocol;
 	private $_contentProtocol;
 	
-	public function createRawSocket(int $ipProtocol, int $contentProtocol) {
+	public function createRawSocket(integer $ipProtocol, integer $contentProtocol) {
 		if ($ipProtocol == PROT_IPv4)
 			$socketFamiliy = AF_INET;
 		else if ($ipProtocol == PROT_IPv6)
