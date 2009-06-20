@@ -14,8 +14,11 @@ define('__PRNL_ROOT_NETWORK', __PRNL_ROOT . DIR_SEP . 'network');
 define('__PRNL_ROOT_PROT', __PRNL_ROOT . DIR_SEP . 'protocols');
 define('__PRNL_ROOT_TOOLS', __PRNL_ROOT . DIR_SEP . 'tools');
 
+//ip protocols
 define('PROT_IPv4', 0);
 define('PROT_IPv6', 41);
+
+//content protocols
 define('PROT_TCP', 6);
 define('PROT_UDP', 17);
 
