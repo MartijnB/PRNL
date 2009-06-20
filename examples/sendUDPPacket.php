@@ -8,7 +8,7 @@ chdir(dirname(__FILE__)); //change working dir to the script dir
 
 require_once('../lib/lib.prnl.php');
 
-if ($_SERVER["argc"] != 2)
-	die('./script <ip> <port>'.PHP_EOL);
+if ($_SERVER["argc"] != 3)
+	die('php '.$_SERVER['argv'][0].' <ip> <port>'.PHP_EOL);
 	
 var_dump($_SERVER['argv']);
