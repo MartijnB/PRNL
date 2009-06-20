@@ -7,7 +7,7 @@
  * (c) 2009 Kenneth van Hooff & Martijn Bogaard
  */
 
-class RawIPNetwork {
+class RawIPNetwork extends RawNetwork  {
 	private $_socket;
 	
 	private $_ipProtocol;
@@ -20,12 +20,8 @@ class RawIPNetwork {
 			$socketFamiliy = AF_INET6;
 		else
 			new Exception("Unknown IP protocol");
-			
-		$this->_socket = socket_create($socketFamiliy, SOCK_RAW, $contentProtocol);
 		
-		if (!$this->_socket) {
-			throw new Exception(socket_strerror(socket_last_error()));
-		}
+		parent::createRawSocket($socketFamiliy, SOCK_RAW, $contentProtocol);
 		
 		$this->_ipProtocol = $ipProtocol;
 		$this->_contentProtocol = $contentProtocol;
@@ -37,37 +33,6 @@ class RawIPNetwork {
 		}
 		
 		socket_setopt($this->_socket, $this->_ipProtocol, 3, 1); //IP_HDRINCL = 3
-	}
-	
-	public function readPacket($length = 16384) {
-		if (!$this->_socket) {
-			throw new Exception('Socket not yet opened!');
-		}
-		
-		$buffer = '';
-		$readBytes = socket_recv($this->_socket, $buffer, $length, 0);
-		
-		if ($readBytes > 0) {
-			$packet = new RawPacket();
-			$packet->setRawPacket($buffer);
-			
-			return $packet;
-		}
-		else {
-			throw new Exception(socket_strerror(socket_last_error()));
-		}
-	}
-	
-	public function closeSocket() {
-		if (is_resource($this->_socket)) {
-			socket_close($this->_socket);
-			
-			$this->_socket = null;
-		}
-	}
-	
-	public function __destruct() {
-		$this->closeSocket();
 	}
 }
 
