@@ -14,5 +14,5 @@ if ($_SERVER["argc"] != 3)
 $ip = $_SERVER['argv'][1];
 $port = (int)$_SERVER['argv'][2];
 
-$rawNetworkManager = new RawNetwork();
+$rawNetworkManager = new RawIPNetwork();
 $rawNetworkManager->createRawSocket(PROT_IPv4, PROT_UDP);

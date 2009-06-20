@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Raw Network Class
+ * Raw IP Network Class
  * 
  * PHP Raw Network Library
  * (c) 2009 Kenneth van Hooff & Martijn Bogaard
  */
 
-class RawNetwork {
+class RawIPNetwork {
 	private $_socket;
 	
 	private $_ipProtocol;
