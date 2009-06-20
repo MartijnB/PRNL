@@ -43,6 +43,11 @@ class RawNetwork {
 		}
 	}
 	
+	/**
+	 * Send a raw packet through the socket
+	 *
+	 * @param IPacket $packet
+	 */
 	public function sendPacket(IPacket $packet) {
 		if (!socket_send($this->_socket, $packet->getRawPacket(), $packet->getLength(), 0)) {
 			throw new Exception(socket_strerror(socket_last_error()));
