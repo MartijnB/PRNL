@@ -88,6 +88,9 @@ class Memory {
 			if ((($i+1) % 50) == 0)
 				printf("\n");
 		}
+		
+		if ((($i+1) % 50) != 0)
+			printf("\n");
 	}
 	
 	public function resetMemory() {
