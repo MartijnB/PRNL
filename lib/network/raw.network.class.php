@@ -18,6 +18,12 @@ class RawNetwork {
 		}
 	}
 	
+	/**
+	 * Read a raw packet of the socket
+	 *
+	 * @param int $length
+	 * @return RawPacket
+	 */
 	public function readPacket($length = 16384) {
 		if (!$this->_socket) {
 			throw new Exception('Socket not yet opened!');
