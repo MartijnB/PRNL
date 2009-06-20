@@ -36,7 +36,7 @@ class RawNetworkClass {
 			throw new Exception('Socket not yet opened!');
 		}
 		
-		socket_setopt($sck, $this->_ipProtocol, 3, 1); //IP_HDRINCL = 3
+		socket_setopt($this->_socket, $this->_ipProtocol, 3, 1); //IP_HDRINCL = 3
 	}
 	
 	public function closeSocket() {
