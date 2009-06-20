@@ -9,7 +9,7 @@
 
 interface IPacket {
 	public function getRawPacket();
-	public function setRawPacket();
+	public function setRawPacket($data);
 }
 
 ?>
