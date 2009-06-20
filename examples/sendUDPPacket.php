@@ -15,4 +15,4 @@ $ip = $_SERVER['argv'][1];
 $port = (int)$_SERVER['argv'][2];
 
 $rawNetworkManager = new RawIPNetwork();
-$rawNetworkManager->createRawSocket(PROT_IPv4, PROT_UDP);
+$rawNetworkManager->createIPSocket(PROT_IPv4, PROT_UDP);
