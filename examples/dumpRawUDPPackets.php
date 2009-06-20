@@ -10,7 +10,7 @@ require_once('../lib/lib.prnl.php');
 
 
 $rawNetworkManager = new RawIPNetwork();
-$rawNetworkManager->createRawIPSocket(PROT_IPv4, PROT_UDP);
+$rawNetworkManager->createIPSocket(PROT_IPv4, PROT_UDP);
 
 while ($packet = $rawNetworkManager->readPacket()) {
 	$packet->dumpPacket();
