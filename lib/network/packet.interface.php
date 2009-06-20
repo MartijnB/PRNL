@@ -10,6 +10,8 @@
 interface IPacket {
 	public function getRawPacket();
 	public function setRawPacket($data);
+	
+	public function dumpPacket();
 }
 
 ?>
