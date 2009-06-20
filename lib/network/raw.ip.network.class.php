@@ -8,8 +8,6 @@
  */
 
 class RawIPNetwork extends RawNetwork  {
-	private $_socket;
-	
 	private $_ipProtocol;
 	private $_contentProtocol;
 	
