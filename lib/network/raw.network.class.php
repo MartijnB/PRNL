@@ -10,6 +10,9 @@
 class RawNetworkClass {
 	private $_socket;
 	
+	private $_ipProtocol;
+	private $_contentProtocol;
+	
 	public function createRawSocket(int $ipProtocol, int $contentProtocol) {
 		if ($ipProtocol == PROT_IPv4)
 			$socketFamiliy = AF_INET;
@@ -23,12 +26,17 @@ class RawNetworkClass {
 		if (!$this->_socket) {
 			throw new Exception(socket_strerror(socket_last_error()));
 		}
+		
+		$this->_ipProtocol = $ipProtocol;
+		$this->_contentProtocol = $contentProtocol;
 	}
 	
 	public function setSendCustomIPHeader() {
 		if (!$this->_socket) {
 			throw new Exception('Socket not yet opened!');
 		}
+		
+		socket_setopt($sck, 0, 3, 1);
 	}
 	
 	public function closeSocket() {
