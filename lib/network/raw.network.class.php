@@ -46,6 +46,10 @@ class RawNetwork {
 			$this->_socket = null;
 		}
 	}
+	
+	public function __destruct() {
+		$this->closeSocket();
+	}
 }
 
 ?>
