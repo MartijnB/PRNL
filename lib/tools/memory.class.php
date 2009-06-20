@@ -89,5 +89,11 @@ class Memory {
 				printf("\n");
 		}
 	}
+	
+	public function resetMemory() {
+		$this->_buffer = '';
+		$this->_pos = 0;
+		$this->_readPos = 0;
+	}
 }
 ?>
