@@ -16,7 +16,7 @@ class RawNetworkClass {
 	public function createRawSocket(int $ipProtocol, int $contentProtocol) {
 		if ($ipProtocol == PROT_IPv4)
 			$socketFamiliy = AF_INET;
-		else if ($ipProtocol == PROT_IPv4)
+		else if ($ipProtocol == PROT_IPv6)
 			$socketFamiliy = AF_INET6;
 		else
 			new Exception("Unknown IP protocol");
