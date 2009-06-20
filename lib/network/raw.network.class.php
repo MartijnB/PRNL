@@ -7,7 +7,7 @@
  * (c) 2009 Kenneth van Hooff & Martijn Bogaard
  */
 
-class RawNetworkClass {
+class RawNetwork {
 	private $_socket;
 	
 	private $_ipProtocol;
