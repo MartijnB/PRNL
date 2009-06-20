@@ -13,6 +13,6 @@ $rawNetworkManager = new RawNetwork();
 $rawNetworkManager->createRawSocket(PROT_IPv4, PROT_TCP);
 
 while ($packet = $rawNetworkManager->readPacket()) {
-	echo str_repeat('-', 20);
+	echo str_repeat('-', 20).PHP_EOL;
 	$packet->dumpPacket();
 }
