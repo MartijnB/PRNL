@@ -51,7 +51,7 @@ class RawNetwork {
 			$packet = new RawPacket();
 			$packet->setRawPacket($buffer);
 			
-			return $buffer;
+			return $packet;
 		}
 		else {
 			throw new Exception(socket_strerror(socket_last_error()));
