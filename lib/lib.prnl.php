@@ -25,7 +25,7 @@ define('PROT_UDP', 17);
 require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'memory.class.php');
 require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'endian.class.php');
 
-require_once(__PRNL_ROOT_NETWORK . DIR_SEP . 'raw.network.class.php');
+require_once(__PRNL_ROOT_NETWORK . DIR_SEP . 'raw.ip.network.class.php');
 
 require_once(__PRNL_ROOT_NETWORK . DIR_SEP . 'packet.interface.php');
 require_once(__PRNL_ROOT_NETWORK . DIR_SEP . 'raw.packet.class.php');
