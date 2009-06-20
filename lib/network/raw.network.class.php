@@ -39,6 +39,25 @@ class RawNetwork {
 		socket_setopt($this->_socket, $this->_ipProtocol, 3, 1); //IP_HDRINCL = 3
 	}
 	
+	public function readPacket($length = 16384) {
+		if (!$this->_socket) {
+			throw new Exception('Socket not yet opened!');
+		}
+		
+		$buffer = '';
+		$readBytes = socket_recv($this->_socket, $buffer, $length, 0);
+		
+		if ($readBytes > 0) {
+			$packet = new RawPacket();
+			$packet->setRawPacket($buffer);
+			
+			return $buffer;
+		}
+		else {
+			throw new Exception(socket_strerror(socket_last_error()));
+		}
+	}
+	
 	public function closeSocket() {
 		if (is_resource($this->_socket)) {
 			socket_close($this->_socket);
