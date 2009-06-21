@@ -36,12 +36,16 @@ class RawPacket implements IPacket {
 		$this->_buffer->addString($data);
 	}
 	
-	public function getLength() {
+	public function getPacketLength() {
 		return $this->_buffer->getMemoryLength();
 	}
 	
 	public function dumpPacket() {
 		$this->_buffer->dumpMemory();
+	}
+	
+	public function __toString() {
+		return $this->getRawPacket();
 	}
 }
 
