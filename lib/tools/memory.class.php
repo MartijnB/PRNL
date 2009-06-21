@@ -119,8 +119,6 @@ class Memory {
 	}
 	
 	public function getShort($pos) {
-		var_dump($pos, $this->getByte($pos), $this->getByte($pos+1));
-		
 		$short = ($this->getByte($pos) << 8);
 		$short += $this->getByte($pos+1);
 		
