@@ -22,6 +22,11 @@ define('PROT_IPv6', 41);
 define('PROT_TCP', 6);
 define('PROT_UDP', 17);
 
+//this lib will only run on te console
+if (php_sapi_name() != 'cli') {
+	die('This script can only run from the commandline!'.PHP_EOL);
+}
+
 require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'ubyte.class.php');
 require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'ushort.class.php');
 require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'endian.class.php');
