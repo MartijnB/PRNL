@@ -60,11 +60,11 @@ class IPv4ProtocolPacket extends RawPacket{
 	}
 	
 	public function getSrcIP() {
-		return long2ip($this->_buffer->getInteger(IIPv4::SRC_IP));
+		return long2ip($this->_buffer->getInteger(IIPv4::IP_SRC));
 	}
 	
 	public function getDstIP() {
-		return long2ip($this->_buffer->getInteger(IIPv4::DST_IP));
+		return long2ip($this->_buffer->getInteger(IIPv4::IP_DST));
 	}
 	
 	public function getData() {
@@ -105,7 +105,7 @@ class IPv4ProtocolPacket extends RawPacket{
 		if ($ip === false)
 			throw new Exception('Invalid src IP!');
 			
-		$this->_buffer->setInteger(IIPv4::SRC_IP, $ip);
+		$this->_buffer->setInteger(IIPv4::IP_SRC, $ip);
 	}
 	
 	public function setDstIP($ip) {
@@ -116,7 +116,7 @@ class IPv4ProtocolPacket extends RawPacket{
 		if ($ip === false)
 			throw new Exception('Invalid dst IP!');
 			
-		$this->_buffer->setInteger(IIPv4::DST_IP, $ip);
+		$this->_buffer->setInteger(IIPv4::IP_DST, $ip);
 	}
 	
 	public function setData($data) {
