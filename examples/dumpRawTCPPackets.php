@@ -9,5 +9,6 @@ $rawNetworkManager = new RawIPNetwork();
 $rawNetworkManager->createIPSocket(PROT_IPv4, PROT_TCP);
 
 while ($packet = $rawNetworkManager->readPacket()) {
+	printf("%s:%i -> %s:%i L:%i TTL: %i IDS: %i OFS: %i", $packet->getSrcIP(), 0, $packet->getDstIP(), 0, $packet->getLength(), $packet->getTTL(), $packet->getIdSequence(), $packet->getOffset());
 	$packet->dumpPacket();
 }
