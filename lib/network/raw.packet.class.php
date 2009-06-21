@@ -10,8 +10,8 @@
 class RawPacket implements IPacket {
 	protected $_buffer;
 	
-	public function __construct() {
-		$this->_buffer = new Memory();
+	public function __construct($packetSize = 0) {
+		$this->_buffer = new Memory($packetSize);
 	}
 	
 	public function getRawPacket() {
