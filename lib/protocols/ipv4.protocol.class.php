@@ -21,80 +21,80 @@
  * 
  */
 
-class IPv4ProtocolPacket extends RawPacket implements IIPv4 {
+class IPv4ProtocolPacket extends RawPacket{
 	public function __construct($data = '') {
-		parent::__construct(HEADER_SIZE);
+		parent::__construct(IIPv4::HEADER_SIZE);
 		
 		if (strlen($data) > 0)
 			$this->setRawPacket($data);
 		
-		$this->_buffer->setByte(VERSION_LENGTH, 69); //version & length
-		$this->_buffer->setByte(TOS, 0); //tos
+		$this->_buffer->setByte(IIPv4::VERSION_LENGTH, 69); //version & length
+		$this->_buffer->setByte(IIPv4::TOS, 0); //tos
 		
 		$this->setTTL(64);
 	}
 	
 	//-- GETTERS
 	public function getLength() {
-		return $this->_buffer->getShort(LENGTH);
+		return $this->_buffer->getShort(IIPv4::LENGTH);
 	}
 	
 	public function getIdSequence() {
-		return $this->_buffer->getShort(ID_SEQ);
+		return $this->_buffer->getShort(IIPv4::ID_SEQ);
 	}
 	
 	public function getOffset() {
-		return $this->_buffer->getShort(OFFSET);
+		return $this->_buffer->getShort(IIPv4::OFFSET);
 	}
 	
 	public function getTTL() {
-		return $this->_buffer->getByte(TTL);
+		return $this->_buffer->getByte(IIPv4::TTL);
 	}
 	
 	public function getProtocol() {
-		return $this->_buffer->getByte(PROTOCOL);
+		return $this->_buffer->getByte(IIPv4::PROTOCOL);
 	}
 	
 	public function getChecksum() {
-		return $this->_buffer->getShort(CHECKSUM);
+		return $this->_buffer->getShort(IIPv4::CHECKSUM);
 	}
 	
 	public function getSrcIP() {
-		return long2ip($this->_buffer->getInteger(SRC_IP));
+		return long2ip($this->_buffer->getInteger(IIPv4::SRC_IP));
 	}
 	
 	public function getDstIP() {
-		return long2ip($this->_buffer->getInteger(DST_IP));
+		return long2ip($this->_buffer->getInteger(IIPv4::DST_IP));
 	}
 	
 	public function getData() {
-		return $this->_buffer->getMemory(DATA);
+		return $this->_buffer->getMemory(IIPv4::DATA);
 	}
 	//-- GETTERS
 	
 	//-- SETTERS
 	public function setLength($length) {
-		$this->_buffer->setShort(LENGTH, $length);
+		$this->_buffer->setShort(IIPv4::LENGTH, $length);
 	}
 	
 	public function setIdSequence($idseq) {
-		$this->_buffer->setShort(ID_SEQ, $idseq);
+		$this->_buffer->setShort(IIPv4::ID_SEQ, $idseq);
 	}
 	
 	public function setOffset($offset) {
-		$this->_buffer->setShort(OFFSET, $offset);
+		$this->_buffer->setShort(IIPv4::OFFSET, $offset);
 	}
 	
 	public function setTTL($ttl) {
-		$this->_buffer->setByte(TTL, $offset);
+		$this->_buffer->setByte(IIPv4::TTL, $offset);
 	}
 	
 	public function setProtocol($protocol) {
-		$this->_buffer->setByte(PROTOCOL, $protocol);
+		$this->_buffer->setByte(IIPv4::PROTOCOL, $protocol);
 	}
 	
 	public function setChecksum($checksum) {
-		$this->_buffer->setShort(CHECKSUM, $checksum);
+		$this->_buffer->setShort(IIPv4::CHECKSUM, $checksum);
 	}
 	
 	public function setSrcIP($ip) {
@@ -105,7 +105,7 @@ class IPv4ProtocolPacket extends RawPacket implements IIPv4 {
 		if ($ip === false)
 			throw new Exception('Invalid src IP!');
 			
-		$this->_buffer->setInteger(SRC_IP, $ip);
+		$this->_buffer->setInteger(IIPv4::SRC_IP, $ip);
 	}
 	
 	public function setDstIP($ip) {
@@ -116,17 +116,17 @@ class IPv4ProtocolPacket extends RawPacket implements IIPv4 {
 		if ($ip === false)
 			throw new Exception('Invalid dst IP!');
 			
-		$this->_buffer->setInteger(DST_IP, $ip);
+		$this->_buffer->setInteger(IIPv4::DST_IP, $ip);
 	}
 	
 	public function setData($data) {
-		$this->_buffer->setMemorySize(HEADER_SIZE);
+		$this->_buffer->setMemorySize(IIPv4::HEADER_SIZE);
 		$this->_buffer->addString($data);
 	}
 	//-- SETTERS
 	
 	public function resetChecksum() {
-		$this->_buffer->setShort(CHECKSUM, 0x0000);
+		$this->_buffer->setShort(IIPv4::CHECKSUM, 0x0000);
 	}
 	
 	/**
