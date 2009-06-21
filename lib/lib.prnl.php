@@ -23,6 +23,7 @@ define('PROT_TCP', 6);
 define('PROT_UDP', 17);
 
 require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'byte.class.php');
+require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'short.class.php');
 require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'endian.class.php');
 require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'memory.class.php');
 
