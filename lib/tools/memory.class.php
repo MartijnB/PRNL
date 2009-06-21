@@ -96,6 +96,12 @@ class Memory {
 		$this->setByte($pos + 3, $int);
 	}
 	
+	public function setMemorySize($size) {
+		if ($size > 0) {
+			$this->_buffer .= str_repeat(0x00, $size - $this->_pos);
+		}
+	}
+	
 	public function getMemoryLength() {
 		return $this->_pos;
 	}
