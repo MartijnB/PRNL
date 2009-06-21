@@ -29,7 +29,7 @@ class UShort {
 		}
 	}
 	
-	public function distract($value) {
+	public function subtract($value) {
 		if ($value > 65535) {
 			$value -= 65536;
 			$this->distract($value);

@@ -29,7 +29,7 @@ class UByte {
 		}
 	}
 	
-	public function distract($value) {
+	public function subtract($value) {
 		if ($value > 255) {
 			$value -= 256;
 			$this->distract($value);
