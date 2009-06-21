@@ -11,63 +11,42 @@ class UByte {
 	private $_value;
 	
 	public function __construct($value = 0) {
-		$this->add($value);
+		$this->add(($value & 0xFF));
 	}
 	
 	public function add($value) {
-		if ($value > 255) {
-			$value -= 256;
-			$this->add($value);
-			return;
-		}
+		$this->_value += $value % 0x100;
 		
-		if (($this->_value + $value) > 255) {
-			$this->_value = ($this->_value + $value) - 256;
-		}
-		else {
-			$this->_value += $value;
+		if ($this->_value > 0xFF) {
+			$this->_value = $this->_value % 0x100;
 		}
 	}
 	
 	public function subtract($value) {
-		if ($value > 255) {
-			$value -= 256;
-			$this->distract($value);
-			return;
-		}
+		$this->_value -= ($value % 0x100);
 		
-		if (($this->_value - $value) < 0) {
-			$this->_value = ($this->_value - $value) + 256;
-		}
-		else {
-			$this->_value -= $value;
-		}
+		if ($this->_value < 0)
+			$this->_value &= 0xFF;
 	}
 	
 	public function setValue($value) {
-		if ($value > 255) {
-			$value -= 256;
-			$this->setValue($value);
-			return;
-		}
-		
-		$this->_value = $value;
+		$this->_value = $value % 0xFF;
 	}
 	
 	public function bitAnd($value) {
-		$this->_value = $this->_value & $value;
+		$this->_value = $this->_value & ($value & 0xFF);
 	}
 	
 	public function bitOr($value) {
-		$this->_value = $this->_value | $value;
+		$this->_value = $this->_value | ($value & 0xFF);
 	}
 	
 	public function bitXOr($value) {
-		$this->_value = $this->_value ^ $value;
+		$this->_value = $this->_value ^ ($value & 0xFF);
 	}
 	
 	public function bitNot() {
-		$this->_value = (~$this->_value) ^ 0xFFFFFF00;
+		$this->_value = (~$this->_value) & 0xFF;
 	}
 	
 	public function getValue() {

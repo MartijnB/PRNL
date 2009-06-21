@@ -11,63 +11,42 @@ class UShort {
 	private $_value;
 	
 	public function __construct($value = 0) {
-		$this->add($value);
+		$this->add(($value & 0xFFFF));
 	}
 	
 	public function add($value) {
-		if ($value > 65535) {
-			$value -= 65536;
-			$this->add($value);
-			return;
-		}
+		$this->_value += $value % 0x10000;
 		
-		if (($this->_value + $value) > 65535) {
-			$this->_value = ($this->_value + $value) - 65536;
-		}
-		else {
-			$this->_value += $value;
+		if ($this->_value > 0xFFFF) {
+			$this->_value = $this->_value % 0x10000;
 		}
 	}
 	
 	public function subtract($value) {
-		if ($value > 65535) {
-			$value -= 65536;
-			$this->distract($value);
-			return;
-		}
+		$this->_value -= ($value % 0x10000);
 		
-		if (($this->_value - $value) < 0) {
-			$this->_value = ($this->_value - $value) + 65536;
-		}
-		else {
-			$this->_value -= $value;
-		}
+		if ($this->_value < 0)
+			$this->_value &= 0xFFFF;
 	}
 	
 	public function setValue($value) {
-		if ($value > 65535) {
-			$value -= 65536;
-			$this->setValue($value);
-			return;
-		}
-		
-		$this->_value = $value;
+		$this->_value = $value % 0xFFFF;
 	}
 	
 	public function bitAnd($value) {
-		$this->_value = $this->_value & $value;
+		$this->_value = $this->_value & ($value & 0xFFFF);
 	}
 	
 	public function bitOr($value) {
-		$this->_value = $this->_value | $value;
+		$this->_value = $this->_value | ($value & 0xFFFF);
 	}
 	
 	public function bitXOr($value) {
-		$this->_value = $this->_value ^ $value;
+		$this->_value = $this->_value ^ ($value & 0xFFFF);
 	}
 	
 	public function bitNot() {
-		$this->_value = (~$this->_value) ^ 0xFFFF0000;
+		$this->_value = (~$this->_value) & 0xFFFF;
 	}
 	
 	public function getValue() {
