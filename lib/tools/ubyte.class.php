@@ -44,6 +44,15 @@ class UByte {
 		}
 	}
 	
+	public function setValue($value) {
+		if ($value > 255) {
+			$value -= 256;
+			$this->setValue($value);
+			return;
+		}
+		
+		$this->_value = $value;
+	}
 	
 	public function getValue() {
 		return $this->_value;

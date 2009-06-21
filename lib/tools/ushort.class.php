@@ -44,6 +44,15 @@ class UShort {
 		}
 	}
 	
+	public function setValue($value) {
+		if ($value > 65535) {
+			$value -= 65536;
+			$this->setValue($value);
+			return;
+		}
+		
+		$this->_value = $value;
+	}
 	
 	public function getValue() {
 		return $this->_value;
