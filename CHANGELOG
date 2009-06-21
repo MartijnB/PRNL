@@ -1,0 +1,8 @@
+Changelog PRNL - PHP Raw Network Library
+(c) 2009 Kenneth van Hooff & Martijn Bogaard
+
+Version 0.1 - tba - Initial release
+
+* Raw IP support
+* Raw TCP & UDP support
+* Some examples

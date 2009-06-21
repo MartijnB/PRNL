@@ -1,0 +1,68 @@
+Readme PRNL - PHP Raw Network Library
+(c) 2009 Kenneth van Hooff & Martijn Bogaard
+
+PHP Raw Network Library is a library to unclose the RAW network support of PHP. It's 
+one of the less used feature's. Most people dont know HOW to use it, but its very 
+powerfull. This library try to make it usable for every decent PHP developer.
+
+PRNL is written in PHP 5 OOP.
+
+- Project home
+
+http://code.google.com/p/prnl/
+
+- Requirements
+
+* Unix like OS
+* PHP 5.0+
+
+- Supported
+
+Other configurations *might* work but we cant ensure it. You can always fill a bugreport 
+for it, but they are only fixed if we have time to do it. Patches are always welcome, as
+long they dont break the supported configurations.
+
+* Linux 32 bit
+* PHP 5.2
+
+note: 64 bit *should* work but we havent the possibility to test it.
+
+- Supported Protocols
+
+* IPv4
+* UDP
+* TCP
+
+- Unsupported Procols
+
+* IPv6
+
+note: checks are missing, data types arent on the right size etc. Small chance it will work.
+
+- Contributors
+
+none
+
+- Support
+
+Support is given on best effort. You can find us on #prnl @ irc.quakenet.org. If you require 
+commercial support, best effort doesnt fit or you need priority to fix a bug, contact us to 
+talk about the possibilities.
+
+- License
+
+PRNL is licensed under the GNU GPL v3.
+
+- Contributions
+
+Contributions can be made by creating a issue on the project home or contacting us on IRC.
+
+- Disclaimer
+
+BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR THE PROGRAM, TO THE 
+EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT 
+HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER 
+EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND 
+PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE 
+COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
