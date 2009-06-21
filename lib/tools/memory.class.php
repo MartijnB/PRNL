@@ -14,7 +14,7 @@ class Memory {
 	private $_readPos = 0;
 	
 	public function addByte($byte) {
-		$this->_buffer[$this->_pos] = $byte;
+		$this->_buffer[$this->_pos] = $byte & 0xFF;
 		$this->_pos++;
 	}
 	
@@ -25,12 +25,16 @@ class Memory {
 	}
 	
 	public function addShort($short) {
+		$short &= 0xFFFF;
+		
 		$this->addByte($short >> 8);
 		$short = $short - (($short >> 8) << 8);
 		$this->addByte($short);
 	}
 	
 	public function addInteger($int) {
+		$int &= 0xFFFFFFFF;
+		
 		$this->addByte($int >> 24 & 0xff);
 		$int = $int - (($int >> 24 & 0xff) << 24);
 		$this->addByte($int >> 16 & 0xff);
@@ -69,16 +73,20 @@ class Memory {
 	}
 
 	public function setByte($pos, $byte) {
-		$this->_buffer[$pos] = $byte;
+		$this->_buffer[$pos] = $byte & 0xFF;
 	}
 	
 	public function setShort($pos, $short) {
+		$short &= 0xFFFF;
+		
 		$this->setByte($pos, $short >> 8);
 		$short = $short - (($short >> 8) << 8);
 		$this->setByte($pos+1, $short);
 	}
 	
-	public function setInteger($pos, $integer) {
+	public function setInteger($pos, $int) {
+		$int &= 0xFFFFFFFF;
+		
 		$this->setByte($pos, $int >> 24 & 0xff);
 		$int = $int - (($int >> 24 & 0xff) << 24);
 		$this->setByte($pos + 1, $int >> 16 & 0xff);
