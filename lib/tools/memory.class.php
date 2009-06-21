@@ -13,6 +13,10 @@ class Memory {
 	
 	private $_readPos = 0;
 	
+	public function __construct($memorySize = 0) {
+		$this->setMemorySize($memorySize);
+	}
+	
 	public function addByte($byte) {
 		$this->_buffer[$this->_pos] = $byte & 0xFF;
 		$this->_pos++;
