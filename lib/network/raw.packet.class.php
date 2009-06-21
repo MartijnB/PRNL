@@ -33,6 +33,7 @@ class RawPacket implements IPacket {
 	}
 	
 	public function setRawPacket($data) {
+		$this->_buffer->resetMemory();
 		$this->_buffer->addString($data);
 	}
 	
