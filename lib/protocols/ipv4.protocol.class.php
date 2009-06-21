@@ -25,13 +25,13 @@ class IPv4ProtocolPacket extends RawPacket{
 	public function __construct($data = '') {
 		parent::__construct(IIPv4::HEADER_SIZE);
 		
-		if (strlen($data) > 0)
-			$this->setRawPacket($data);
-		
 		$this->_buffer->setByte(IIPv4::VERSION_LENGTH, 69); //version & length
 		$this->_buffer->setByte(IIPv4::TOS, 0); //tos
 		
 		$this->setTTL(64);
+		
+		if (strlen($data) > 0)
+			$this->setRawPacket($data);
 	}
 	
 	//-- GETTERS
