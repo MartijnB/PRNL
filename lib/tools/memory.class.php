@@ -62,22 +62,22 @@ class Memory {
 		$this->addByte($int);
 	}
 	
-	public function readByte() {
+	public function getByte() {
 		return $this->_buffer[$this->_readPos++];
 	}
 	
-	public function readShort() {
-		$short = ($this->readByte() << 8);
-		$short += $this->readByte();
+	public function getShort() {
+		$short = ($this->getByte() << 8);
+		$short += $this->getByte();
 		
 		return $short;
 	}
 	
-	public function readInteger() {		
-		$int = $this->readByte() << 24;
-		$int += $this->readByte() << 16;
-		$int += $this->readByte() << 8;
-		$int += $this->readByte();
+	public function getInteger() {		
+		$int = $this->getByte() << 24;
+		$int += $this->getByte() << 16;
+		$int += $this->getByte() << 8;
+		$int += $this->getByte();
 		
 		return (int)$int;
 	}
