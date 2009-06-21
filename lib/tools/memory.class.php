@@ -64,6 +64,26 @@ class Memory {
 		$this->_readPos = 0;
 	}
 	
+	public function setByte($pos, $byte) {
+		$this->_buffer[$pos] = $byte;
+	}
+	
+	public function setShort($pos, $short) {
+		$this->setByte($pos, $short >> 8);
+		$short = $short - (($short >> 8) << 8);
+		$this->setByte($pos+1, $short);
+	}
+	
+	public function setInteger($pos, $integer) {
+		$this->setByte($pos, $int >> 24 & 0xff);
+		$int = $int - (($int >> 24 & 0xff) << 24);
+		$this->setByte($pos + 1, $int >> 16 & 0xff);
+		$int = $int - (($int >> 16 & 0xff ) << 16);
+		$this->setByte($pos + 2, $int >> 8 & 0xff);
+		$int = $int - (($int >> 8 & 0xff) << 8);
+		$this->setByte($pos + 3, $int);
+	}
+	
 	public function getMemoryLength() {
 		return $this->_pos;
 	}
