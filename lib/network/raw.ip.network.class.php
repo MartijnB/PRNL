@@ -48,7 +48,7 @@ class RawIPNetwork extends RawNetwork  {
 		if (!$pData)
 			return false;
 		
-		return new IPv4ProtocolPacket($pData);
+		return new IPv4ProtocolPacket($pData->getRawPacket());
 	}
 	
 	/**
