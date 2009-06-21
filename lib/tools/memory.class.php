@@ -114,22 +114,24 @@ class Memory {
 		$this->setByte($pos + 3, $int);
 	}
 	
-	public function setMemorySize($size) {
-		if ($this->pos < $size) {
-			if ($size > 0) {
-				for ($i=0; $i < ($size - $this->_pos); $i++) {
-					$this->addByte(0xff);
-				}
-			}
-		}
-		else {
-			$this->_buffer = substr($this->_buffer, 0, $size);
-			$this->_pos = $size;
-		}
+	public function getByte($pos) {
+		return $this->_buffer[$pos];
 	}
 	
-	public function getMemoryLength() {
-		return $this->_pos;
+	public function getShort($pos) {
+		$short = ($this->getByte($pos) << 8);
+		$short += $this->getByte($pos+1);
+		
+		return $short;
+	}
+	
+	public function getInteger($pos) {
+		$int = $this->getByte($pos) << 24;
+		$int += $this->getByte($pos+1) << 16;
+		$int += $this->getByte($pos+2) << 8;
+		$int += $this->getByte($pos+3);
+		
+		return (int)$int;
 	}
 	
 	public function getMemory($startPost = 0, $endPost = -1) {
@@ -145,6 +147,30 @@ class Memory {
 		return $buffer;
 	}
 	
+	public function getMemoryLength() {
+		return $this->_pos;
+	}
+	
+	public function setMemorySize($size) {
+		if ($this->pos < $size) {
+			if ($size > 0) {
+				for ($i=0; $i < ($size - $this->_pos); $i++) {
+					$this->addByte(0xff);
+				}
+			}
+		}
+		else {
+			$this->_buffer = substr($this->_buffer, 0, $size);
+			$this->_pos = $size;
+		}
+	}
+	
+	public function resetMemory() {
+		$this->_buffer = '';
+		$this->_pos = 0;
+		$this->_readPos = 0;
+	}
+	
 	public function dumpMemory() {
 		for ($i=0; $i < $this->_pos; $i++) {
 			printf("%02X ", $this->_buffer[$i]);
@@ -155,12 +181,6 @@ class Memory {
 		
 		if ((($i+1) % 50) != 0)
 			printf("\n");
-	}
-	
-	public function resetMemory() {
-		$this->_buffer = '';
-		$this->_pos = 0;
-		$this->_readPos = 0;
 	}
 }
 ?>
