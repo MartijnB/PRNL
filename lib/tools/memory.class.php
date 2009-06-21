@@ -64,6 +64,10 @@ class Memory {
 		$this->_readPos = 0;
 	}
 	
+	public function setReadPointer($value) {
+ 		$this->_readPos = $value;
+	}
+
 	public function setByte($pos, $byte) {
 		$this->_buffer[$pos] = $byte;
 	}
