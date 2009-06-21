@@ -54,6 +54,22 @@ class UByte {
 		$this->_value = $value;
 	}
 	
+	public function bitAnd($value) {
+		$this->_value = $this->_value & $value;
+	}
+	
+	public function bitOr($value) {
+		$this->_value = $this->_value | $value;
+	}
+	
+	public function bitXOr($value) {
+		$this->_value = $this->_value ^ $value;
+	}
+	
+	public function bitNot() {
+		$this->_value = (~$this->_value) ^ 0xFFFFFF00;
+	}
+	
 	public function getValue() {
 		return $this->_value;
 	}
