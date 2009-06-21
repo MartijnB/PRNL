@@ -42,6 +42,12 @@ class RawIPNetwork extends RawNetwork  {
 		$this->_contentProtocol = $contentProtocol;
 	}
 	
+	/**
+	 * Read a IP packet
+	 *
+	 * @param int $length
+	 * @return IPv4ProtocolPacket
+	 */
 	public function readPacket($length = 16384) {
 		$pData = parent::readPacket($length);
 		
@@ -52,7 +58,7 @@ class RawIPNetwork extends RawNetwork  {
 	}
 	
 	/**
-	 * Send a raw packet through the socket
+	 * Send a ip packet through the socket
 	 *
 	 * @param IPv4ProtocolPacket $packet
 	 */
