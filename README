@@ -11,6 +11,11 @@ PRNL is written in PHP 5 OOP.
 
 http://code.google.com/p/prnl/
 
+- State
+
+Currently is this project in pre-alfa stage. The current code isnt mature enough to be 
+production ready, the API's change almost daily and a lot of feature's are still missing.
+
 - Requirements
 
 * Unix like OS
