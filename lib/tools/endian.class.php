@@ -23,6 +23,8 @@
 
 class Endian {
 	public static function convertEndianShort($short) {
+		$short &= 0xFFFF;
+		
 		$firstBit = $short >> 8;
 		$short = $short - (($short >> 8) << 8);
 		$secondBit = $short;
@@ -31,6 +33,8 @@ class Endian {
 	}
 	
 	public static function convertEndianInteger($int) {
+		$int &= 0xFFFFFFFF;
+		
 		$firstBit = ($int >> 24 & 0xff);
 		$int = $int - (($int >> 24 & 0xff) << 24);
 		$secondBit = ($int >> 16 & 0xff);
