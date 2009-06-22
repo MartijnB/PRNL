@@ -137,14 +137,12 @@ class IPv4ProtocolPacket extends RawPacket{
 	 */
 	public function calculateChecksum() {
 		$sum = new UShort();
+
 		$length = 20;
 		while ($length > 1) {
 			$sum->add($this->_buffer->readShort());
 			$length -= 2;
 		}
-
-		if ($length & 1) // If odd, padding
-			$sum->add($this->_buffer->readByte());
 
 		$this->_buffer->setShort(IIPv4::CHECKSUM, (0xFFFF - $sum->getValue()));
 	}
