@@ -134,10 +134,19 @@ class IPv4ProtocolPacket extends RawPacket{
 	/**
 	 * Calculate the checksum of the packet
 	 * 
-	 * @todo implement
 	 */
 	public function calculateChecksum() {
-		throw new Exception('Not yet implemented');
+		$sum = new UShort();
+		$length = 20;
+		while ($length > 1) {
+			$sum->add($this->_buffer->readShort());
+			$length -= 2;
+		}
+
+		if ($length & 1) // If odd, padding
+			$sum->add($this->_buffer->readByte());
+
+		$this->_buffer->setShort(IIPv4::CHECKSUM, (0xFFFF - $sum->getValue()));
 	}
 	
 	public function getPacket() {
