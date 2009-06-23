@@ -138,18 +138,17 @@ class Memory {
 		return (int)$int;
 	}
 	
-	public function getMemory($startPost = 0, $endPost = -1) {
-		/*if ($endPost == -1) {
-			$endPost = $this->_pos;
+	public function getMemory($startPos = 0, $endPos = -1) {		
+		if ($startPos == 0 && $endPos == -1) {
+			return $this->_buffer;
 		}
-
-		$buffer = '';
-		for ($i=$startPost; $i < $endPost; $i++) {
-			$buffer .= chr($this->_mem[$i]);
+		else {
+			if ($endPos == -1) {
+				$endPos = $this->_pos;
+			}
+			
+			return substr($this->_buffer, $startPos, $endPos);
 		}
-		
-		return $buffer;*/
-		return $this->_buffer;
 	}
 	
 	public function getMemoryLength() {
