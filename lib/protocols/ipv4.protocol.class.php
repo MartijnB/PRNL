@@ -138,7 +138,8 @@ class IPv4ProtocolPacket extends RawPacket{
 	public function calculateChecksum() {
 		$sum = new UShort();
 
-		$length = 20;
+		$length = IIPv4::HEADER_SIZE;
+		$this->_buffer->resetReadPointer();
 		while ($length > 1) {
 			$sum->add($this->_buffer->readShort());
 			$length -= 2;

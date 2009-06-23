@@ -14,8 +14,8 @@ $rawNetworkManager = new RawIPNetwork();
 $rawNetworkManager->createIPSocket(PROT_IPv4, PROT_UDP);
 
 $rawUDPPackage = new UDPProtocolPacket();
-$rawUDPPackage->setSrcPort(54321);
-$rawUDPPackage->setDstPort(12345);
+$rawUDPPackage->setSrcPort($port);
+$rawUDPPackage->setDstPort($port);
 $rawUDPPackage->setLength(IUDP::HEADER_SIZE + 11);
 $rawUDPPackage->setChecksum(0);
 $rawUDPPackage->setData("Hello World");
@@ -27,9 +27,19 @@ $rawIPv4Package->setOffset(0);
 $rawIPv4Package->setTTL(255);
 $rawIPv4Package->setProtocol(PROT_UDP);
 $rawIPv4Package->setChecksum(0);
-$rawIPv4Package->setSrcIP("192.168.1.1");
-$rawIPv4Package->setDstIP("192.168.1.100");
+$rawIPv4Package->setSrcIP("127.0.0.1");
+$rawIPv4Package->setDstIP($ip);
+
+print "IP package: ";
+print $rawIPv4Package->dumpPacket() . PHP_EOL . PHP_EOL;
+
 $rawIPv4Package->setData($rawUDPPackage->getPacket());
 $rawIPv4Package->calculateChecksum();
 
-$rawNetworkManager->sendPacket($rawIPv4Package);
+print "UDP package: ";
+print $rawUDPPackage->dumpPacket() . PHP_EOL . PHP_EOL;
+
+$rawNetworkManager->sendPacketTo($rawIPv4Package, $ip, $port);
+
+print "Full package: ";
+print $rawIPv4Package->dumpPacket() . PHP_EOL . PHP_EOL;
