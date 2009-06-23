@@ -63,7 +63,8 @@ class RawIPNetwork extends RawNetwork  {
 	 * @param IPv4ProtocolPacket $packet
 	 */
 	public function sendPacket(IPv4ProtocolPacket $packet) {
-		parent::sendPacket($packet->getPacket());
+		$packet->completePacket();
+		parent::sendPacket($packet);
 	}
 }
 
