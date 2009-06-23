@@ -2,8 +2,8 @@ Readme PRNL - PHP Raw Network Library
 (c) 2009 Kenneth van Hooff & Martijn Bogaard
 
 PHP Raw Network Library is a library to unclose the RAW network support of PHP. It's 
-one of the less used feature's. Most people dont know HOW to use it, but its very 
-powerfull. This library try to make it usable for every decent PHP developer.
+one of the less used feature's. Most people dont know HOW to use it, but it's very 
+powerful. This library tries to make it usable for every decent PHP developer.
 
 PRNL is written in PHP 5 OOP.
 
@@ -13,8 +13,8 @@ http://code.google.com/p/prnl/
 
 - State
 
-Currently is this project in pre-alfa stage. The current code isnt mature enough to be 
-production ready, the API's change almost daily and a lot of feature's are still missing.
+Currently this project is in the pre-alfa stage. The current code isn't mature enough to be 
+used in production. The API's change almost on a daily basis and a lot of feature's are still missing.
 
 - Requirements
 
@@ -23,14 +23,14 @@ production ready, the API's change almost daily and a lot of feature's are still
 
 - Supported
 
-Other configurations *might* work but we cant ensure it. You can always fill a bugreport 
-for it, but they are only fixed if we have time to do it. Patches are always welcome, as
-long they dont break the supported configurations.
+Other configurations *might* work but we can't ensure it. You can always file a bugreport 
+for it, but such issues will only resolved if we have time for it. Patches are always welcome, as
+long as they don't break the supported configurations.
 
 * Linux 32 bit
 * PHP 5.2
 
-note: 64 bit *should* work but we havent the possibility to test it.
+note: 64 bit *should* work but we haven't had the possibility to test it.
 
 - Supported Protocols
 
@@ -42,16 +42,16 @@ note: 64 bit *should* work but we havent the possibility to test it.
 
 * IPv6
 
-note: checks are missing, data types arent on the right size etc. Small chance it will work.
+note: checks are missing, data types aren't the right size etc. Small chance it will work.
 
 - Contributors
 
-none
+maikelg
 
 - Support
 
-Support is given on best effort. You can find us on #prnl @ irc.freenode.org. If you require 
-commercial support, best effort doesnt fit or you need priority to fix a bug, contact us to 
+Support is given on a best effort basis. You can find us at #prnl @ irc.freenode.org. If you require 
+commercial support, best effort doesn't fit your needs or you need priority fixing a bug, contact us to 
 talk about the possibilities.
 
 - License
@@ -60,7 +60,7 @@ PRNL is licensed under the GNU GPL v3.
 
 - Contributions
 
-Contributions can be made by creating a issue on the project home or contacting us on IRC.
+Contributions can be made by creating an issue at the project home or contacting us by IRC.
 
 - Disclaimer
 
