@@ -58,7 +58,7 @@ class RawNetwork {
 	}
 	
 	public function sendPacket(IPacket $packet) {
-		if (!socket_send($this->_socket, $packet->getRawPacket(), $packet->getLength(), 0)) {
+		if (!socket_send($this->_socket, $packet->getRawPacket(), $packet->getPacketLength(), 0)) {
 			throw new Exception(socket_strerror(socket_last_error()));
 		}
 	}
@@ -69,7 +69,7 @@ class RawNetwork {
 	 * @param IPacket $packet
 	 */
 	public function sendPacketTo(IPacket $packet, $addr, $port = 0) {
-		if (!socket_sendto($this->_socket, $packet->getRawPacket(), $packet->getLength(), 0, $addr, $port)) {
+		if (!socket_sendto($this->_socket, $packet->getRawPacket(), $packet->getPacketLength(), 0, $addr, $port)) {
 			throw new Exception(socket_strerror(socket_last_error()));
 		}
 	}
