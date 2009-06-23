@@ -115,6 +115,8 @@ class Memory {
 	}
 	
 	public function getByte($pos) {
+		var_dump(ord($this->_buffer{$pos}));
+		
 		return ord($this->_buffer{$pos});
 	}
 	
