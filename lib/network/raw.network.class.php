@@ -68,8 +68,10 @@ class RawNetwork {
 	 *
 	 * @param IPacket $packet
 	 */
-	public function sendPacketTo(IPacket $packet, $addr, $port = 0) {//error checking is really to slow. PHP will already warn on his own.
-		socket_sendto($this->_socket, $packet->getRawPacket(), $packet->getPacketLength(), 0, $addr, $port);
+	public function sendPacketTo(IPacket $packet, $addr, $port = 0) {
+		socket_sendto($this->_socket, $packet->getRawPacket(), $packet->getPacketLength(), 0, $addr, $port)) {
+			throw new Exception(socket_strerror(socket_last_error()));
+		}
 	}
 	
 	public function closeSocket() {
