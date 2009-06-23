@@ -22,6 +22,7 @@
  */
 
 class Memory {
+	private $_mem = array();
 	private $_buffer = '';
 	private $_pos = 0;
 	
@@ -32,7 +33,9 @@ class Memory {
 	}
 	
 	public function addByte($byte) {
-		$this->_buffer[$this->_pos] = $byte & 0xFF;
+		$this->_buffer .= chr($byte & 0xFF);
+		$this->_mem[$this->_pos] = $byte & 0xFF;
+		
 		$this->_pos++;
 	}
 	
@@ -63,7 +66,7 @@ class Memory {
 	}
 	
 	public function readByte() {
-		return $this->_buffer[$this->_readPos++];
+		return $this->_mem[$this->_readPos++];
 	}
 	
 	public function readShort() {
@@ -91,7 +94,8 @@ class Memory {
 	}
 
 	public function setByte($pos, $byte) {
-		$this->_buffer[$pos] = $byte & 0xFF;
+		$this->_buffer{$pos} = chr($byte & 0xFF);
+		$this->_mem[$pos] = $byte & 0xFF;
 	}
 	
 	public function setShort($pos, $short) {
@@ -115,7 +119,7 @@ class Memory {
 	}
 	
 	public function getByte($pos) {
-		return $this->_buffer[$pos];
+		return $this->_mem[$pos];
 	}
 	
 	public function getShort($pos) {
@@ -135,16 +139,17 @@ class Memory {
 	}
 	
 	public function getMemory($startPost = 0, $endPost = -1) {
-		if ($endPost == -1) {
+		/*if ($endPost == -1) {
 			$endPost = $this->_pos;
 		}
 
 		$buffer = '';
 		for ($i=$startPost; $i < $endPost; $i++) {
-			$buffer .= chr($this->_buffer[$i]);
+			$buffer .= chr($this->_mem[$i]);
 		}
 		
-		return $buffer;
+		return $buffer;*/
+		return $this->_buffer;
 	}
 	
 	public function getMemoryLength() {
@@ -161,20 +166,20 @@ class Memory {
 			}
 		}
 		else {
-			//$this->_buffer = substr($this->_buffer, 0, $size);
+			//$this->_mem = substr($this->_mem, 0, $size);
 			//$this->_pos = $size;
 		}
 	}
 	
 	public function resetMemory() {
-		$this->_buffer = '';
+		$this->_mem = '';
 		$this->_pos = 0;
 		$this->_readPos = 0;
 	}
 	
 	public function dumpMemory() {
 		for ($i=0; $i < $this->_pos; $i++) {
-			printf("%02X ", $this->_buffer[$i]);
+			printf("%02X ", $this->_mem[$i]);
 			
 			if ((($i+1) % 50) == 0)
 				printf("\n");
