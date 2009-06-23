@@ -154,14 +154,15 @@ class Memory {
 	public function setMemorySize($size) {
 		if ($this->_pos < $size) {
 			if ($size > 0) {
-				for ($i=0; $i < ($size - $this->_pos); $i++) {
+				$pos = $this->_pos;
+				for ($i=0; $i < ($size - $pos); $i++) {
 					$this->addByte(0xff);
 				}
 			}
 		}
 		else {
-			$this->_buffer = substr($this->_buffer, 0, $size);
-			$this->_pos = $size;
+			//$this->_buffer = substr($this->_buffer, 0, $size);
+			//$this->_pos = $size;
 		}
 	}
 	
