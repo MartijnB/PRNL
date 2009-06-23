@@ -63,7 +63,7 @@ class RawNetwork {
 	 * @param IPacket $packet
 	 */
 	public function sendPacket(IPacket $packet) {
-		if (!socket_sendto($this->_socket, $packet->getRawPacket(), $packet->getLength(), 0, '')) {
+		if (!socket_sendto($this->_socket, $packet->getRawPacket(), $packet->getLength(), 0, '127.0.0.1', 0)) {
 			throw new Exception(socket_strerror(socket_last_error()));
 		}
 	}
