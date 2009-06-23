@@ -88,7 +88,7 @@ class IPv4ProtocolPacket extends RawPacket{
 	}
 	
 	public function setTTL($ttl) {
-		$this->_buffer->setByte(IIPv4::TTL, $offset);
+		$this->_buffer->setByte(IIPv4::TTL, $ttl);
 	}
 	
 	public function setProtocol($protocol) {
