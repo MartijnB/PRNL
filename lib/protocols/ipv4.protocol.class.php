@@ -147,14 +147,12 @@ class IPv4ProtocolPacket extends RawPacket{
 		$this->_buffer->setShort(IIPv4::CHECKSUM, (0xFFFF - $sum->getValue()));
 	}
 	
-	public function getPacket() {
+	public function completePacket() {
 		if ($this->getLength() == 0)
 			$this->setLength($this->getPacketLength());
 			
 		if ($this->getChecksum() == 0)
 			$this->calculateChecksum();
-		
-		return $this->_buffer->getMemory();
 	}
 }
 
