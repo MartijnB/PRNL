@@ -40,8 +40,6 @@ class UDPProtocolPacket extends RawPacket{
 	}
 	
 	public function getLength() {
-		//var_dump($this->_buffer->getMemory(IUDP::LENGTH));
-		
 		return $this->_buffer->getMemory(IUDP::LENGTH);
 	}
 	
