@@ -165,12 +165,13 @@ class Memory {
 			}
 		}
 		else {
-			//$this->_mem = substr($this->_mem, 0, $size);
-			//$this->_pos = $size;
+			$this->_buffer = substr($this->_buffer, 0, $size);
+			$this->_pos = $size;
 		}
 	}
 	
 	public function resetMemory() {
+		$this->_buffer = '';
 		$this->_mem = '';
 		$this->_pos = 0;
 		$this->_readPos = 0;
