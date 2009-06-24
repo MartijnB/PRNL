@@ -11,6 +11,16 @@ PRNL is written in PHP 5 OOP.
 
 http://code.google.com/p/prnl/
 
+- Support
+
+Support is given on a best effort basis. You can find us at #prnl @ irc.freenode.org. If you require 
+commercial support, best effort doesn't fit your needs or you need priority fixing a bug, contact us to 
+talk about the possibilities.
+
+- License
+
+PRNL is licensed under the GNU GPL v3.
+
 - State
 
 Currently this project is in the pre-alfa stage. The current code isn't mature enough to be 
@@ -44,19 +54,16 @@ note: 64 bit *should* work but we haven't had the possibility to test it.
 
 note: checks are missing, data types aren't the right size etc. Small chance it will work.
 
+- Known limitations
+
+* PRNL require's root priveleges to open a raw socket. This is for security reasons and enforced 
+by the linux kernel and isnt PRNL related.
+* CentOS has a default SELinux configuration wich doenst allow Raw Socket usage and IP Spoofing.
+Disable SELinux and PRNL will works fine.
+
 - Contributors
 
-maikelg
-
-- Support
-
-Support is given on a best effort basis. You can find us at #prnl @ irc.freenode.org. If you require 
-commercial support, best effort doesn't fit your needs or you need priority fixing a bug, contact us to 
-talk about the possibilities.
-
-- License
-
-PRNL is licensed under the GNU GPL v3.
+MaikelG
 
 - Contributions
 
@@ -70,4 +77,4 @@ HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY
 EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
 MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND 
 PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE 
-COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.ge
