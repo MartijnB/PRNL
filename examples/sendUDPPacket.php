@@ -10,36 +10,39 @@ if ($_SERVER["argc"] != 3)
 $ip = $_SERVER['argv'][1];
 $port = (int)$_SERVER['argv'][2];
 
-$rawNetworkManager = new RawIPNetwork();
-$rawNetworkManager->createIPSocket(PROT_IPv4, PROT_UDP);
+$rawNetworkManager = new RawIPNetwork();						// Create new IPNetwork
+$rawNetworkManager->createIPSocket(PROT_IPv4, PROT_UDP);		// Create new IP socket (IPv4 - UDP)
 
-$rawUDPPackage = new UDPProtocolPacket();
-$rawUDPPackage->setSrcPort($port);
-$rawUDPPackage->setDstPort($port);
-$rawUDPPackage->setLength(IUDP::HEADER_SIZE + 11);
-$rawUDPPackage->setChecksum(0);
-$rawUDPPackage->setData("Hello World");
-
-$rawIPv4Package = new IPv4ProtocolPacket();
-$rawIPv4Package->setLength(IIPv4::HEADER_SIZE + $rawUDPPackage->getLength());
-$rawIPv4Package->setIdSequence(54321);
-$rawIPv4Package->setOffset(0);
-$rawIPv4Package->setTTL(255);
-$rawIPv4Package->setProtocol(PROT_UDP);
-$rawIPv4Package->setChecksum(0);
+$rawIPv4Package = new IPv4ProtocolPacket();						// Create new IPv4 Packet
+$rawIPv4Package->setLength(0);									// Set the length 0, we will calculate it later
+$rawIPv4Package->setIdSequence(1);								// Set the Sequence
+$rawIPv4Package->setOffset(0);									// Set the Offset
+$rawIPv4Package->setTTL(255);									// Set the Time To Live
+$rawIPv4Package->setProtocol(PROT_UDP);							// Set protocol to UDP (17)
+$rawIPv4Package->setChecksum(0);								// Set the checksum 0, we will calcualte it later
 $rawIPv4Package->setSrcIP("127.0.0.1");
 $rawIPv4Package->setDstIP($ip);
 
-print "IP package: ";
-print $rawIPv4Package->dumpPacket() . PHP_EOL . PHP_EOL;
+$rawUDPPackage = new UDPProtocolPacket();						// Create new UDP Packet
+$rawUDPPackage->setSrcPort($port);								// Set Source port
+$rawUDPPackage->setDstPort($port);								// Set Destination port
+$rawUDPPackage->setLength(0);									// Set the length 0, we will calculate it later
+$rawUDPPackage->setChecksum(0);									// Set the checksum 0, we will calcualte it later
+$rawUDPPackage->setData("Hello World");							// Set the data
+$rawUDPPackage->completePacket();								// Complete the package (calculate length + checksum)
 
-$rawIPv4Package->setData($rawUDPPackage->getPacket());
-$rawIPv4Package->calculateChecksum();
+print "IP package: ";
+print $rawIPv4Package->dumpPacket() . "\n\n";					// Show the IPv4 Package
+
+$rawIPv4Package->setData($rawUDPPackage->getPacket());			// Add the UDP Package to the IPv4 Package
+$rawIPv4Package->completePacket();								// Complete the package (calculate length + checksum)
 
 print "UDP package: ";
-print $rawUDPPackage->dumpPacket() . PHP_EOL . PHP_EOL;
-
-$rawNetworkManager->sendPacketTo($rawIPv4Package, $ip, $port);
+print $rawUDPPackage->dumpPacket() . "\n\n";					// Show the UDP Package
 
 print "Full package: ";
-print $rawIPv4Package->dumpPacket() . PHP_EOL . PHP_EOL;
+print $rawIPv4Package->dumpPacket() . "\n\n";					// Show the full (IPv4 + UDP Package)
+
+$rawNetworkManager->sendPacketTo($rawIPv4Package, $ip, $port);	// Send the package
+
+?>
