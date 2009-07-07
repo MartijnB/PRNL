@@ -32,7 +32,7 @@ class UShort {
 		$this->_value += $value % 0x10000;
 		
 		if ($this->_value > 0xFFFF) {
-			$this->_value = $this->_value % 0x10000;
+			$this->_value = $this->_value % 0xFFFF;
 		}
 	}
 	
