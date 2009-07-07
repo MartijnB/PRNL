@@ -32,19 +32,19 @@ class UDPProtocolPacket extends RawPacket{
 	
 	//-- GETTERS
 	public function getSrcPort() {
-		return $this->_buffer->getMemory(IUDP::PORT_DST);
+		return $this->_buffer->getShort(IUDP::PORT_DST);
 	}
 	
 	public function getDstPort() {
-		return $this->_buffer->getMemory(IUDP::PORT_SRC);
+		return $this->_buffer->getShort(IUDP::PORT_SRC);
 	}
 	
 	public function getLength() {
-		return $this->_buffer->getMemory(IUDP::LENGTH);
+		return $this->_buffer->getShort(IUDP::LENGTH);
 	}
 	
 	public function getChecksum() {
-		return $this->_buffer->getMemory(IUDP::CHECKSUM);
+		return $this->_buffer->getShort(IUDP::CHECKSUM);
 	}
 		
 	public function getData() {

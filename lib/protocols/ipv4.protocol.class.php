@@ -144,8 +144,8 @@ class IPv4ProtocolPacket extends RawPacket{
 			$sum->add($this->_buffer->readShort());
 			$length -= 2;
 		}
-
-		$this->_buffer->setShort(IIPv4::CHECKSUM, (0xFFFF - $sum->getValue()));
+		$sum->bitNot();
+		$this->_buffer->setShort(IIPv4::CHECKSUM, $sum->getValue());
 	}
 	
 	public function completePacket() {
