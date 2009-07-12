@@ -21,7 +21,9 @@
  * 
  */
 
-class IPv4ProtocolPacket extends RawPacket{
+class IPv4ProtocolPacket extends RawPacket {
+	private $_data;
+	
 	public function __construct($data = '') {
 		parent::__construct(IIPv4::HEADER_SIZE);
 		
@@ -121,9 +123,11 @@ class IPv4ProtocolPacket extends RawPacket{
 		$this->_buffer->setInteger(IIPv4::IP_DST, $ip);
 	}
 	
-	public function setData($data) {
+	public function setData(RawPacket $data) {
+		$this->_data = $data;
+		
 		$this->_buffer->setMemorySize(IIPv4::HEADER_SIZE);
-		$this->_buffer->addString($data);
+		$this->_buffer->addString($data->getRawPacket());
 	}
 	//-- SETTERS
 	
@@ -154,6 +158,14 @@ class IPv4ProtocolPacket extends RawPacket{
 			
 		if ($this->getChecksum() == 0)
 			$this->calculateChecksum();
+			
+		//hook the sub package
+		if ($this->getProtocol() == PROT_UDP) {
+			$this->_data->completePacket($this);
+		}
+		
+		$this->_buffer->setMemorySize(IIPv4::HEADER_SIZE);
+		$this->_buffer->addString($data->getRawPacket());
 	}
 }
 

@@ -84,18 +84,16 @@ class UDPProtocolPacket extends RawPacket{
 	 * 
 	 * TODO: Create checksum
 	 */
-	public function calculateChecksum() {
+	public function calculateChecksum(IPv4ProtocolPacket $ipPacket) {
 
 	}
 	
-	public function getPacket() {
+	public function completePacket(IPv4ProtocolPacket $ipPacket) {
 		if ($this->getLength() == 0)
 			$this->setLength($this->getPacketLength());
 			
 		if ($this->getChecksum() == 0)
-			$this->calculateChecksum();
-		
-		return $this->_buffer->getMemory();
+			$this->calculateChecksum($ipPacket);
 	}
 }
 
