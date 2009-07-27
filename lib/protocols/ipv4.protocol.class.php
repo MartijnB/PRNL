@@ -117,6 +117,8 @@ class IPv4ProtocolPacket extends RawPacket {
 			$ip = ip2long($ip);
 		}
 		
+		var_dump($ip);
+		
 		if ($ip === false)
 			throw new Exception('Invalid dst IP!');
 			
