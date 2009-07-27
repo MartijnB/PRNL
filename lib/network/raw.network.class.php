@@ -58,6 +58,8 @@ class RawNetwork {
 	}
 	
 	public function sendPacket(IPacket $packet) {
+		var_dump($this->_socket);
+		
 		if (!$this->_socket) {
 			throw new Exception('Socket not yet opened!');
 		}
