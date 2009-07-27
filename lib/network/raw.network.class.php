@@ -58,8 +58,6 @@ class RawNetwork {
 	}
 	
 	public function sendPacket(IPacket $packet) {
-		var_dump($this->_socket);
-		
 		if (!$this->_socket) {
 			throw new Exception('Socket not yet opened!');
 		}
@@ -75,6 +73,12 @@ class RawNetwork {
 	 * @param IPacket $packet
 	 */
 	public function sendPacketTo(IPacket $packet, $addr, $port = 0) {
+		if (!$this->_socket) {
+			throw new Exception('Socket not yet opened!');
+		}
+		
+		var_dump($packet->getPacketLength());
+		
 		if (!socket_sendto($this->_socket, $packet->getRawPacket(), $packet->getPacketLength(), 0, $addr, $port)) {
 			throw new Exception(socket_strerror(socket_last_error()));
 		}
