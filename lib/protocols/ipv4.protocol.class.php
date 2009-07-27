@@ -165,7 +165,7 @@ class IPv4ProtocolPacket extends RawPacket {
 		}
 		
 		$this->_buffer->setMemorySize(IIPv4::HEADER_SIZE);
-		$this->_buffer->addString($data->getRawPacket());
+		$this->_buffer->addString($this->_data->getRawPacket());
 	}
 }
 
