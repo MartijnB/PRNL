@@ -113,6 +113,8 @@ class IPv4ProtocolPacket extends RawPacket {
 	}
 	
 	public function setDstIP($ip) {
+		var_dump($ip);
+		
 		if (!is_numeric($ip)) {
 			$ip = ip2long($ip);
 		}
