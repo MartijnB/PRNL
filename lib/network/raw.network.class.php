@@ -79,6 +79,8 @@ class RawNetwork {
 		
 		$packet->dumpPacket();
 		
+		var_dump($this->_socket, $packet->getRawPacket(), $packet->getPacketLength(), $addr, 0);
+		
 		if (!socket_sendto($this->_socket, $packet->getRawPacket(), $packet->getPacketLength(), 0, $addr, $port)) {
 			throw new Exception(socket_strerror(socket_last_error()));
 		}
