@@ -34,7 +34,7 @@ $rawUDPPackage->completePacket($rawIPv4Package);								// Complete the package 
 print "IP package: ";
 print $rawIPv4Package->dumpPacket() . "\n\n";					// Show the IPv4 Package
 
-$rawIPv4Package->setData($rawUDPPackage->getPacket());			// Add the UDP Package to the IPv4 Package
+$rawIPv4Package->setData($rawUDPPackage);			// Add the UDP Package to the IPv4 Package
 $rawIPv4Package->completePacket();								// Complete the package (calculate length + checksum)
 
 print "UDP package: ";
