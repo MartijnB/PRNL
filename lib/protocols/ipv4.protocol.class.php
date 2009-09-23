@@ -71,8 +71,22 @@ class IPv4ProtocolPacket extends RawPacket {
 		return long2ip($this->_buffer->getInteger(IIPv4::IP_DST));
 	}
 	
-	public function getData() {
+	public function getRawData() {
 		return $this->_buffer->getMemory(IIPv4::DATA);
+	}
+	
+	public function getDataObject() {
+		if (!$this->_data) {
+			if ($this->getProtocol() == PROT_UDP) {
+				$this->_data = new UDPProtocolPacket($this->getRawData());
+			}
+			else {
+				$this->_data = new RawPacket();
+				$this->_data->setRawPacket($this->getRawData());
+			}
+		}
+		
+		return $this->_data;
 	}
 	//-- GETTERS
 	
