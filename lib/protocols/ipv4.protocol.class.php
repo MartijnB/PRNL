@@ -156,7 +156,6 @@ class IPv4ProtocolPacket extends RawPacket {
 	
 	/**
 	 * Calculate the checksum of the packet
-	 * 
 	 */
 	public function calculateChecksum() {
 		$sum = new UShort();

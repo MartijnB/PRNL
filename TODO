@@ -1,7 +1,10 @@
 Version 0.1:
 
-* Implement Interface CompletablePackage in UDP Packet
+* TCP support
+* UDP Checksums
 * Analyzed package dump (a complete tree dump of a package)
+* Tools implemented as a php extension
+* PHPDoc
 
 Next Version:
 
