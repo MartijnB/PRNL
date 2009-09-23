@@ -21,8 +21,8 @@
  * 
  */
 
-interface ICompleteablePacket {
-	public function completePacket(RawPacket $parentPacket);
+interface ICompleteableProtocolPacket {
+	public function completePacket(IPv4ProtocolPacket $parentPacket);
 }
 
 ?>
