@@ -41,10 +41,14 @@ if (php_sapi_name() != 'cli') {
 	die('This script can only run from the commandline!'.PHP_EOL);
 }
 
-require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'ubyte.class.php');
-require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'ushort.class.php');
-require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'endian.class.php');
-require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'memory.class.php');
+dl('prnl-tools.so');
+
+if (!extension_loaded('prnltools')) {
+	require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'ubyte.class.php');
+	require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'ushort.class.php');
+	require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'endian.class.php');
+	require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'memory.class.php');
+}
 
 require_once(__PRNL_ROOT_NETWORK . DIR_SEP . 'raw.network.class.php');
 require_once(__PRNL_ROOT_NETWORK . DIR_SEP . 'raw.ip.network.class.php');
