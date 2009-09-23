@@ -49,8 +49,9 @@ require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'memory.class.php');
 require_once(__PRNL_ROOT_NETWORK . DIR_SEP . 'raw.network.class.php');
 require_once(__PRNL_ROOT_NETWORK . DIR_SEP . 'raw.ip.network.class.php');
 
-require_once(__PRNL_ROOT_NETWORK . DIR_SEP . 'packet.interface.php');
 require_once(__PRNL_ROOT_NETWORK . DIR_SEP . 'raw.packet.class.php');
+
+require_once(__PRNL_ROOT_NETWORK . DIR_SEP . 'completeable.packet.interface.php');
 
 require_once(__PRNL_ROOT_PROT . DIR_SEP . 'ipv4.interface.php');
 require_once(__PRNL_ROOT_PROT . DIR_SEP . 'ipv4.protocol.class.php');
