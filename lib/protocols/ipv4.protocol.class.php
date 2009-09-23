@@ -75,6 +75,11 @@ class IPv4ProtocolPacket extends RawPacket {
 		return $this->_buffer->getMemory(IIPv4::DATA);
 	}
 	
+	/**
+	 * Return the payload as a object
+	 *
+	 * @return RawPacket
+	 */
 	public function getDataObject() {
 		if (!$this->_data) {
 			if ($this->getProtocol() == PROT_UDP) {
