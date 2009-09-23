@@ -41,7 +41,13 @@ if (php_sapi_name() != 'cli') {
 	die('This script can only run from the commandline!'.PHP_EOL);
 }
 
-dl('prnl-tools.so');
+if (!defined('__PRNL_NO_EXTERNAL_MODULES')) {
+	define('__PRNL_NO_EXTERNAL_MODULES', 0);
+}
+
+if (!__PRNL_NO_EXTERNAL_MODULES) {
+	dl('prnl-tools.so');
+}
 
 if (!extension_loaded('prnltools')) {
 	require_once(__PRNL_ROOT_TOOLS . DIR_SEP . 'ubyte.class.php');
