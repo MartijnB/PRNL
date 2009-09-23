@@ -1,0 +1,13 @@
+#clean
+phpize --clean
+rm prnl-tools.so 2>/dev/null
+
+#build
+phpize
+CFLAGS="-O3" ./configure
+#./configure
+make
+mv modules/prnltools.so prnl-tools.so
+
+#clean
+phpize --clean

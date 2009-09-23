@@ -1,0 +1,3 @@
+php buildToolsSource.php
+phc --extension=prnltools --generate-c tools.source.php > ../prnl-tools/source.c
+phc --generate-c tools.source.php > ../prnl-tools/source.standalone.c
