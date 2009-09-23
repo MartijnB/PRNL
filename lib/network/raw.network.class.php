@@ -57,7 +57,7 @@ class RawNetwork {
 		}
 	}
 	
-	public function sendPacket(IPacket $packet) {
+	public function sendPacket(RawPacket $packet) {
 		if (!$this->_socket) {
 			throw new Exception('Socket not yet opened!');
 		}
@@ -70,9 +70,9 @@ class RawNetwork {
 	/**
 	 * Send a raw packet through the socket
 	 *
-	 * @param IPacket $packet
+	 * @param RawPacket $packet
 	 */
-	public function sendPacketTo(IPacket $packet, $addr, $port = 0) {
+	public function sendPacketTo(RawPacket $packet, $addr, $port = 0) {
 		if (!$this->_socket) {
 			throw new Exception('Socket not yet opened!');
 		}

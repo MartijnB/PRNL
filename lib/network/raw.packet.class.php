@@ -21,7 +21,7 @@
  * 
  */
 
-class RawPacket implements IPacket {
+class RawPacket {
 	protected $_buffer;
 	
 	public function __construct($packetSize = 0) {

@@ -21,13 +21,8 @@
  * 
  */
 
-interface IPacket {
-	public function getRawPacket();
-	public function setRawPacket($data);
-	
-	public function getPacketLength();
-	
-	public function dumpPacket();
+interface ICompleteablePacket {
+	public function completePacket(RawPacket $parentPacket);
 }
 
 ?>
