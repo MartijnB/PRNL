@@ -29,13 +29,12 @@ $rawUDPPackage->setDstPort($port);								// Set Destination port
 $rawUDPPackage->setLength(0);									// Set the length 0, we will calculate it later
 $rawUDPPackage->setChecksum(0);									// Set the checksum 0, we will calcualte it later
 $rawUDPPackage->setData("Hello World");							// Set the data
-$rawUDPPackage->completePacket($rawIPv4Package);								// Complete the package (calculate length + checksum)
 
 print "IP package: ";
 print $rawIPv4Package->dumpPacket() . "\n\n";					// Show the IPv4 Package
 
-$rawIPv4Package->setData($rawUDPPackage);			// Add the UDP Package to the IPv4 Package
-$rawIPv4Package->completePacket();								// Complete the package (calculate length + checksum)
+$rawIPv4Package->setData($rawUDPPackage);						// Add the UDP Package to the IPv4 Package
+$rawIPv4Package->completePacket();								// Complete the package (calculate length + checksum); Is optional since the send call completes the package too.
 
 print "UDP package: ";
 print $rawUDPPackage->dumpPacket() . "\n\n";					// Show the UDP Package
