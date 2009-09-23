@@ -58,7 +58,7 @@ class RawIPNetwork extends RawNetwork  {
 	}
 	
 	/**
-	 * Send a ip packet through the socket
+	 * Send a IP packet through the socket
 	 *
 	 * @param IPv4ProtocolPacket $packet
 	 */
