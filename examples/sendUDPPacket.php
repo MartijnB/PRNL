@@ -42,6 +42,6 @@ print $rawUDPPackage->dumpPacket() . "\n\n";					// Show the UDP Package
 print "Full package: ";
 print $rawIPv4Package->dumpPacket() . "\n\n";					// Show the full (IPv4 + UDP Package)
 
-$rawNetworkManager->sendPacketTo($rawIPv4Package, $ip, $port);	// Send the package
+$rawNetworkManager->sendPacket($rawIPv4Package);				// Send the package
 
 ?>
