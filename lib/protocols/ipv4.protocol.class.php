@@ -179,7 +179,7 @@ class IPv4ProtocolPacket extends RawPacket {
 			$this->calculateChecksum();
 			
 		//hook the sub package
-		if ($this->getProtocol() == PROT_UDP) {
+		if ($this->_data instanceof ICompleteableProtocolPacket) {
 			$this->_data->completePacket($this);
 		}
 		
