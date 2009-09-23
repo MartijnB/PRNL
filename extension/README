@@ -1,0 +1,19 @@
+This folder contains the native PRNL PHP Extension. This subproject was started to improve
+the performance of PRNL. PHC (phpcompiler.org) was used to create the native extensions.
+Sadly enough the performance of the native version was less then the script version.
+
+Pure PHP:
+
+$ time php bench/memory.php
+real    0m16.694s
+user    0m16.269s
+sys     0m0.316s
+
+Native tools:
+
+$ time php bench/memory.php
+real    0m17.931s
+user    0m17.469s
+sys     0m0.368s
+
+As long this isnt fixed, a native version isnt usefull.
