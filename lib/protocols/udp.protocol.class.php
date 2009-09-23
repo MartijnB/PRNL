@@ -21,7 +21,7 @@
  * 
  */
 
-class UDPProtocolPacket extends RawPacket implements ICompleteablePacket {
+class UDPProtocolPacket extends RawPacket implements ICompleteableProtocolPacket {
 	public function __construct($data = '') {
 		parent::__construct(IUDP::HEADER_SIZE);
 		
