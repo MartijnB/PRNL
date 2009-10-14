@@ -160,7 +160,7 @@ class Memory {
 			if ($size > 0) {
 				$pos = $this->_pos;
 				for ($i=0; $i < ($size - $pos); $i++) {
-					$this->addByte(0xff);
+					$this->addByte(0x00);
 				}
 			}
 		}
