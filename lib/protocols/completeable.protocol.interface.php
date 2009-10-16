@@ -22,7 +22,7 @@
  */
 
 interface ICompleteableProtocolPacket {
-	public function completePacket(IPv4ProtocolPacket $parentPacket);
+	public function completePacket(Memory $parentPacketBuffer);
 }
 
 ?>

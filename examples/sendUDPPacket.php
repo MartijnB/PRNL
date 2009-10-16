@@ -24,7 +24,7 @@ $rawIPv4Package->setDstIP($ip);
 $rawUDPPackage = new UDPProtocolPacket();						// Create new UDP Packet
 $rawUDPPackage->setSrcPort($port);								// Set Source port
 $rawUDPPackage->setDstPort($port);								// Set Destination port
-$rawUDPPackage->setData("Hello World");							// Set the data
+$rawUDPPackage->setData("Hello World!");							// Set the data
 
 print "IP package: ";
 print $rawIPv4Package->dumpPacket() . "\n\n";					// Show the IPv4 Package

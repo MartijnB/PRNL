@@ -179,7 +179,7 @@ class IPv4ProtocolPacket extends RawPacket {
 			
 		//hook the sub package
 		if ($this->_data instanceof ICompleteableProtocolPacket) {
-			$this->_data->completePacket($this);
+			$this->_data->completePacket($this->_buffer);
 		}
 		
 		$this->_buffer->setMemorySize(IIPv4::HEADER_SIZE);

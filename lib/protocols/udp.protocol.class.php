@@ -84,16 +84,35 @@ class UDPProtocolPacket extends RawPacket implements ICompleteableProtocolPacket
 	 * 
 	 * TODO: Create checksum
 	 */
-	public function calculateChecksum(IPv4ProtocolPacket $ipPacket) {
-
+	public function calculateChecksum(Memory $ipPacketBuffer) {
+		$this->_buffer->resetReadPointer();
+		
+		$sum = new UShort();
+		//the data
+		for ($i = 0; $i < $ipPacketBuffer->getShort(IIPv4::LENGTH); $i+=2) {
+			$sum->add($this->_buffer->readShort());
+		}
+		
+		$sum->add($ipPacketBuffer->getShort(IIPv4::IP_SRC));
+		$sum->add($ipPacketBuffer->getShort(IIPv4::IP_SRC+2));
+		$sum->add($ipPacketBuffer->getShort(IIPv4::IP_DST));
+		$sum->add($ipPacketBuffer->getShort(IIPv4::IP_DST+2));
+		$sum->add(17); //protocol
+		$sum->add($ipPacketBuffer->getShort(IIPv4::LENGTH));
+		
+		//I know, its dirty but if i substract 20 of it, it works :|
+		$sum->subtract(20);
+		
+		$sum->bitNot();
+		$this->_buffer->setShort(IUDP::CHECKSUM, $sum->getValue());
 	}
 	
-	public function completePacket(IPv4ProtocolPacket $ipPacket) {
+	public function completePacket(Memory $ipPacketBuffer) {
 		if ($this->getLength() == 0)
 			$this->setLength($this->getPacketLength());
 			
 		if ($this->getChecksum() == 0)
-			$this->calculateChecksum($ipPacket);
+			$this->calculateChecksum($ipPacketBuffer);
 	}
 }
 
