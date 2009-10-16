@@ -36,7 +36,7 @@ class RawIPNetwork extends RawNetwork  {
 		parent::createRawSocket($socketFamiliy, SOCK_RAW, $contentProtocol);
 		
 		//force own IP header
-		socket_setopt($this->_socket, $this->_ipProtocol, 3, 1); //IP_HDRINCL = 3
+		socket_setopt($this->_socket, $ipProtocol, 3, 1); //IP_HDRINCL = 3
 		
 		$this->_ipProtocol = $ipProtocol;
 		$this->_contentProtocol = $contentProtocol;
