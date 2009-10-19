@@ -95,7 +95,7 @@ class UDPProtocolPacket extends RawPacket implements ICompleteableProtocolPacket
 		$sum->add($ipPacketBuffer->getShort(IIPv4::IP_SRC+2));
 		$sum->add($ipPacketBuffer->getShort(IIPv4::IP_DST));
 		$sum->add($ipPacketBuffer->getShort(IIPv4::IP_DST+2));
-		$sum->add(17); //protocol
+		$sum->add(PROT_UDP); //protocol
 		$sum->add($this->getLength());
 		
 		$sum->bitNot();
