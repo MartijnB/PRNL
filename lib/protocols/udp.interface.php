@@ -30,5 +30,3 @@ interface IUDP {
 	const CHECKSUM       = 0x06; // 16 bit
 	const DATA           = 0x08;
 }
-
-?>

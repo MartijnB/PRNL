@@ -67,5 +67,3 @@ class RawIPNetwork extends RawNetwork  {
 		parent::sendPacketTo($packet, $packet->getDstIP());
 	}
 }
-
-?>

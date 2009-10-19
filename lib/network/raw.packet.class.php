@@ -49,5 +49,3 @@ class RawPacket {
 		return $this->getRawPacket();
 	}
 }
-
-?>

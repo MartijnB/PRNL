@@ -1,7 +1,7 @@
 <?php
 
 /**
- * UDP Protocol Packet Class
+ * TCP Protocol Packet Class
  * 
  * PHP Raw Network Library
  * (c) 2009 Kenneth van Hooff & Martijn Bogaard
@@ -21,62 +21,104 @@
  * 
  */
 
-class UDPProtocolPacket extends RawPacket implements ICompleteableProtocolPacket {
+class TCPProtocolPacket extends RawPacket implements ICompleteableProtocolPacket {
 	public function __construct($data = '') {
-		parent::__construct(IUDP::HEADER_SIZE);
+		parent::__construct(ITCP::HEADER_SIZE);
 		
 		if (strlen($data) > 0) {
 			$this->setRawPacket($data);
 		}
+		
+		$this->setSegmentOffset(0x05);
 	}
 	
 	//-- GETTERS
 	public function getSrcPort() {
-		return $this->_buffer->getShort(IUDP::PORT_SRC);
+		return $this->_buffer->getShort(ITCP::PORT_SRC);
 	}
 	
 	public function getDstPort() {
-		return $this->_buffer->getShort(IUDP::PORT_DST);
+		return $this->_buffer->getShort(ITCP::PORT_DST);
 	}
 	
-	public function getLength() {
-		return $this->_buffer->getShort(IUDP::LENGTH);
+	public function getIdSequence() {
+		return $this->_buffer->getInteger(ITCP::ID_SEQ);
+	}
+	
+	public function getAckIdSequence() {
+		return $this->_buffer->getInteger(ITCP::ACK_ID_SEQ);
+	}
+	
+	public function getSegmentOffset() {
+		return $this->_buffer->getByte(ITCP::SEG_OFF);
+	}
+	
+	public function getFlags() {
+		return $this->_buffer->getByte(ITCP::FLAGS);
+	}
+	
+	public function getWindowSize() {
+		return $this->_buffer->getShort(ITCP::WINDOW);
 	}
 	
 	public function getChecksum() {
-		return $this->_buffer->getShort(IUDP::CHECKSUM);
+		return $this->_buffer->getShort(ITCP::CHECKSUM);
+	}
+	
+	public function getUrgentPointer() {
+		return $this->_buffer->getShort(ITCP::URGENT);
 	}
 		
 	public function getData() {
-		return $this->_buffer->getMemory(IUDP::DATA);
+		return $this->_buffer->getMemory(ITCP::DATA);
 	}
 	//-- GETTERS
 	
 	//-- SETTERS
 	public function setSrcPort($port) {
-		$this->_buffer->setShort(IUDP::PORT_SRC, $port);
+		$this->_buffer->setShort(ITCP::PORT_SRC, $port);
 	}
 	
 	public function setDstPort($port) {
-		$this->_buffer->setShort(IUDP::PORT_DST, $port);
+		$this->_buffer->setShort(ITCP::PORT_DST, $port);
 	}
 	
-	public function setLength($length) {
-		$this->_buffer->setShort(IUDP::LENGTH, $length);
+	public function setIdSequence($id_seq) {
+		$this->_buffer->setInteger(ITCP::ID_SEQ, $id_seq);
+	}
+	
+	public function setAckIdSequence($id_seq) {
+		$this->_buffer->setInteger(ITCP::ACK_ID_SEQ, $id_seq);
+	}
+	
+	public function setSegmentOffset($off) {
+		$this->_buffer->setByte(ITCP::SEG_OFF, $off << 4);
+	}
+	
+	public function setFlags($flags) {
+		$this->_buffer->setByte(ITCP::FLAGS, $flags);
+	}
+	
+	public function setWindowSize($size) {
+		$this->_buffer->setShort(ITCP::WINDOW, $size);
 	}
 	
 	public function setChecksum($checksum) {
-		$this->_buffer->setShort(IUDP::CHECKSUM, $checksum);
+		$this->_buffer->setShort(ITCP::CHECKSUM, $checksum);
+	}
+	
+	public function setUrgentPointer($p) {
+		$this->_buffer->setShort(ITCP::URGENT, $p);
 	}
 		
 	public function setData($data) {
-		$this->_buffer->setMemorySize(IUDP::HEADER_SIZE);
+		$this->_buffer->setMemorySize(ITCP::HEADER_SIZE);
 		$this->_buffer->addString($data);
 	}
 	//-- SETTERS
 	
 	public function resetChecksum() {
-		$this->_buffer->setShort(IUDP::CHECKSUM, 0x0000);
+		$this->_buffer->setShort(ITCP::CHECKSUM, 0x0000);
 	}
 	
 	/**
@@ -87,7 +129,7 @@ class UDPProtocolPacket extends RawPacket implements ICompleteableProtocolPacket
 		
 		$sum = new UShort();
 		//the data
-		for ($i = 0; $i < $this->getLength(); $i+=2) {
+		for ($i = 0; $i < $this->getPacketLength(); $i+=2) {
 			$sum->add($this->_buffer->readShort());
 		}
 		
@@ -95,17 +137,14 @@ class UDPProtocolPacket extends RawPacket implements ICompleteableProtocolPacket
 		$sum->add($ipPacketBuffer->getShort(IIPv4::IP_SRC+2));
 		$sum->add($ipPacketBuffer->getShort(IIPv4::IP_DST));
 		$sum->add($ipPacketBuffer->getShort(IIPv4::IP_DST+2));
-		$sum->add(PROT_UDP); //protocol
-		$sum->add($this->getLength());
+		$sum->add(PROT_TCP); //protocol
+		$sum->add($this->getPacketLength());
 		
 		$sum->bitNot();
 		$this->_buffer->setShort(IUDP::CHECKSUM, $sum->getValue());
 	}
 	
 	public function completePacket(Memory $ipPacketBuffer) {
-		if ($this->getLength() == 0)
-			$this->setLength($this->getPacketLength());
-			
 		if ($this->getChecksum() == 0)
 			$this->calculateChecksum($ipPacketBuffer);
 	}

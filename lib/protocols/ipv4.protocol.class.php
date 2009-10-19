@@ -85,6 +85,9 @@ class IPv4ProtocolPacket extends RawPacket {
 			if ($this->getProtocol() == PROT_UDP) {
 				$this->_data = new UDPProtocolPacket($this->getRawData());
 			}
+			else if ($this->getProtocol() == PROT_TCP) {
+				$this->_data = new TCPProtocolPacket($this->getRawData());
+			}
 			else {
 				$this->_data = new RawPacket();
 				$this->_data->setRawPacket($this->getRawData());
@@ -186,5 +189,3 @@ class IPv4ProtocolPacket extends RawPacket {
 		$this->_buffer->addString($this->_data->getRawPacket());
 	}
 }
-
-?>

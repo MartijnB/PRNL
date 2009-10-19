@@ -1,7 +1,7 @@
 <?php
 
 /**
- * IPv4 interface
+ * TCP interface
  * 
  * PHP Raw Network Library
  * (c) 2009 Kenneth van Hooff & Martijn Bogaard
@@ -21,18 +21,25 @@
  * 
  */
 
-interface IIPv4 {
+interface ITCP {
 	const HEADER_SIZE    = 0x14;
 	
-	const VERSION_LENGTH = 0x00; // 8 bit
-	const TOS            = 0x01; // 8 bit
-	const LENGTH         = 0x02; // 16 bit
-	const ID_SEQ         = 0x04; // 16 bit
-	const OFFSET         = 0x06; // 16 bit
-	const TTL            = 0x08; // 8 bit
-	const PROTOCOL       = 0x09; // 8 bit
-	const CHECKSUM       = 0x0A; // 16 bit
-	const IP_SRC         = 0x0C; // 32 bit
-	const IP_DST         = 0x10; // 32 bit
+	const PORT_SRC       = 0x00; // 16 bit
+	const PORT_DST       = 0x02; // 16 bit
+	const ID_SEQ         = 0x04; // 32 bit
+	const ACK_ID_SEQ     = 0x08; // 32 bit
+	const SEG_OFF        = 0x0C; //  8 bit
+	const FLAGS          = 0x0D; //  8 bit
+	const WINDOW         = 0x0E; // 16 bit
+	const CHECKSUM       = 0x10; // 16 bit
+	const URGENT         = 0x12; // 16 bit
 	const DATA           = 0x14;
+	
+	const FLAG_FIN       = 0x01;
+	const FLAG_SYN       = 0x02;
+	const FLAG_RST       = 0x04;
+	const FLAG_PUSH      = 0x08;
+	const FLAG_ACK       = 0x10;
+	const FLAG_URG       = 0x20;
 }
+

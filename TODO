@@ -1,11 +1,8 @@
-Version 0.1:
+Version 0.2:
 
-* TCP support
+* ICMP Support
 * Analyzed package dump (a complete tree dump of a package)
 * PHPDoc
-
-Next Version:
-
 
 Unknown Version:
 

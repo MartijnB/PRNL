@@ -45,5 +45,3 @@ class Endian {
 		return ($fourthBit << 24) +($tirthBit << 16) + ($secondBit << 8) + $firstBit;
 	}
 }
-
-?>

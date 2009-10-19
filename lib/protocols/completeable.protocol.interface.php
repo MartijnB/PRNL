@@ -24,5 +24,3 @@
 interface ICompleteableProtocolPacket {
 	public function completePacket(Memory $parentPacketBuffer);
 }
-
-?>

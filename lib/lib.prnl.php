@@ -56,5 +56,8 @@ require_once(__PRNL_ROOT_PROT . DIR_SEP . 'completeable.protocol.interface.php')
 require_once(__PRNL_ROOT_PROT . DIR_SEP . 'ipv4.interface.php');
 require_once(__PRNL_ROOT_PROT . DIR_SEP . 'ipv4.protocol.class.php');
 
+require_once(__PRNL_ROOT_PROT . DIR_SEP . 'tcp.interface.php');
+require_once(__PRNL_ROOT_PROT . DIR_SEP . 'tcp.protocol.class.php');
+
 require_once(__PRNL_ROOT_PROT . DIR_SEP . 'udp.interface.php');
 require_once(__PRNL_ROOT_PROT . DIR_SEP . 'udp.protocol.class.php');

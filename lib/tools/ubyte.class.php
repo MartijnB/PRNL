@@ -71,5 +71,3 @@ class UByte {
 		return (string)$this->getValue();
 	}
 }
-
-?>

@@ -71,5 +71,3 @@ class UShort {
 		return (string)$this->getValue();
 	}
 }
-
-?>
