@@ -23,6 +23,8 @@
 
 define('DIR_SEP', DIRECTORY_SEPARATOR);
 
+define('PRNL_VERSION', '0.1-dev');
+
 define('__PRNL_ROOT', dirname(__FILE__));
 define('__PRNL_ROOT_NETWORK', __PRNL_ROOT . DIR_SEP . 'network');
 define('__PRNL_ROOT_PROT', __PRNL_ROOT . DIR_SEP . 'protocols');
